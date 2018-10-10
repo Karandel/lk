@@ -59,13 +59,33 @@
 
 <script>
 export default {
-  name: 'ProgressBar',
-  computed: {
-    serverCallInProgress () {
-      if (this.$store.state.serverCallState === 'loading') {
-        return true
+  name: 'TicketListSelectionBar',
+  data: () => ({
+    startDate: null,
+    startDateError: '',
+    endDate: null,
+    ticketsStatus: '',
+    ticketsStatuses: ['Открытые', 'Завершенные', 'Все']
+  }),
+  watch: {
+    startDate (current, prev) {
+      this.onTicketSelectionChanged()
+    },
+    endDate (current, prev) {
+      this.onTicketSelectionChanged()
+    },
+    ticketsStatus (current, prev) {
+      this.onTicketSelectionChanged()
+    }
+  },
+  methods: {
+    onTicketSelectionChanged () {
+      this.startDateError = ''
+      if (this.startDate > this.endDate) {
+        this.startDateError = 'Дата начала больше даты окончания'
+        return
       }
-      return false
+      this.$store.dispatch('fetchTickets', {self: this})
     }
   }
 }
