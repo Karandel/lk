@@ -1,11 +1,11 @@
 <template>
-  <v-flex xs12>
+  <v-flex>
     <v-card class="clickable cardElementOfList" hover>
       <v-card-text>
         <v-layout row wrap>
           <v-flex md8>
             <span>{{ticket.number}} от {{ticket.creationDate | moment($defaultDateTimeFormat)}}</span><br>
-            <h2 v-html="ticket.title"></h2>
+            <h3 v-html="ticket.title"></h3>
           </v-flex>
           <v-flex md4>
             <b><span>Статус: {{ticket.status}}</span></b><br>

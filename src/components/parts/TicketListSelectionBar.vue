@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap>
-    <v-flex xs12 sm4 md4>
+    <v-flex xs12 sm2 md2>
       <v-menu
         ref="startDateMenu"
         :close-on-content-click="false"
@@ -23,7 +23,7 @@
 
       </v-menu>
     </v-flex>
-    <v-flex xs12 sm4 md4>
+    <v-flex xs12 sm2 md2>
       <v-menu
         ref="endDateMenu"
         :close-on-content-click="false"
@@ -46,7 +46,7 @@
 
       </v-menu>
     </v-flex>
-    <v-flex xs12 sm4 md4>
+    <v-flex xs12 sm2 md2>
       <v-select
         :items="ticketsStatuses"
         v-model="ticketsStatus"
