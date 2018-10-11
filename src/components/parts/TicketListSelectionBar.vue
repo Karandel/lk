@@ -48,10 +48,14 @@
         </v-menu>
       </v-flex>
       <v-flex xs12 sm2 md2>
-        <v-radio-group v-model='allTickets' row>
+        <!-- <v-radio-group v-model='allTickets' row>
           <v-radio label="Только мои" value='false'></v-radio>
           <v-radio label="Все" value='true'></v-radio>
-        </v-radio-group>
+        </v-radio-group> -->
+        <v-switch
+          :label="allTicketsLabel"
+          v-model="allTickets"
+        ></v-switch>
       </v-flex>
     </v-layout>
   </v-container>
@@ -70,8 +74,16 @@ export default {
     startDate: null,
     startDateError: '',
     endDate: null,
-    allTickets: 'false'
+    allTickets: false
   }),
+  computed: {
+    allTicketsLabel () {
+      if (this.allTickets) {
+        return 'Все'
+      }
+      return 'Только мои'
+    }
+  },
   watch: {
     startDate (current, prev) {
       this.onTicketSelectionChanged()
