@@ -100,7 +100,6 @@
 <script>
 export default {
   created () {
-    this.$store.commit('setMainNavbarState', {title: this.$route.params.ticketNumber, returnButton: true})
     this.$store.commit('setCurrentTicketNumber', this.$route.params.ticketNumber)
     this.$store.dispatch('fetchTicket', {self: this})
   },
