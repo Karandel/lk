@@ -7,7 +7,8 @@ export default class ALP_ITIL_API {
       timeout: 100000,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Basic UmVzdCBBUEkgVXNlcjpxZmVlNS5mZDosQTZxUSZC'
+        'Authorization': 'Basic UmVzdCBBUEkgVXNlcjpxZmVlNS5mZDosQTZxUSZC',
+        'sessionid': localStorage.getItem('ALP_ITIL_API_SessionID')
       }
     })
     service.interceptors.response.use(this._handleSuccess, this._handleError)
@@ -34,39 +35,30 @@ export default class ALP_ITIL_API {
     return Promise.reject(error)
   }
 
-  _getClientSessionIDQueryString () {
-    var result = '?sessionID=' + this._getClientApiSessionID()
-    return result
-  }
-
-  _getClientApiSessionID () {
-    return localStorage.getItem('ALP_ITIL_API_SessionID')
-  }
-
   authUser (requestData, callback) {
     return this.service.post('/auth', requestData)
       .then((response) => callback(response.data))
   }
 
   getPersonalTicketList () {
-    return this.service.get('/tickets?sessionID=' + this._getClientApiSessionID())
+    return this.service.get('/tickets')
   }
 
   getTicketData (ticketNumber) {
-    return this.service.get('/tickets/' + ticketNumber + this._getClientSessionIDQueryString())
+    return this.service.get('/tickets/' + ticketNumber)
   }
 
   getTicketComments (ticketNumber) {
-    return this.service.get('/tickets/' + ticketNumber + '/comments' + this._getClientSessionIDQueryString())
+    return this.service.get('/tickets/' + ticketNumber + '/comments')
   }
 
   getTicketNewStatuses (ticketNumber, callback) {
-    return this.service.get('/tickets/' + ticketNumber + '/newStatuses' + this._getClientSessionIDQueryString())
+    return this.service.get('/tickets/' + ticketNumber + '/newStatuses')
       .then((response) => callback(response.data))
   }
 
   getAttachmentContent (attachmentID, callback) {
-    return this.service.get('/attachments/' + attachmentID + this._getClientSessionIDQueryString())
+    return this.service.get('/attachments/' + attachmentID)
       .then((response) => callback(response.data))
   }
 }
