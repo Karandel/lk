@@ -42,7 +42,25 @@ export default new Vuex.Store({
       self.$ALP_ITIL_API.getPersonalTicketList()
         .then((response) => {
           if (response && response.data && response.data.tickets) {
-            commit('FETCH_PAGE_CONTENT', response.data.tickets)
+            var tickets = []
+            tickets.open = []
+            tickets.inProgress = []
+            tickets.onHold = []
+            tickets.completed = []
+            var arrayLength = response.data.tickets.length
+            for (var i = 0; i < arrayLength; i++) {
+              var element = response.data.tickets[i]
+              if (element.completed) {
+                tickets.completed.push(element)
+              } else if (element.onHold) {
+                tickets.onHold.push(element)
+              } else if (element.inProgress) {
+                tickets.inProgress.push(element)
+              } else {
+                tickets.open.push(element)
+              }
+            }
+            commit('FETCH_PAGE_CONTENT', tickets)
           }
           commit('setDoneFetchingState')
         })
