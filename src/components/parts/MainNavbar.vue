@@ -39,7 +39,7 @@ export default {
   name: 'MainNavbar',
   data () {
     return {
-      drawer: true
+      drawer: false
     }
   },
   computed: {

@@ -39,65 +39,15 @@ export default new Vuex.Store({
   actions: {
     fetchTickets ({commit}, {self}) {
       commit('setFetchingPageContentState')
-      self.$ALP_ITIL_API.getPersonalTicketList()
-        .then((response) => {
-          if (response && response.data && response.data.tickets) {
-            var tickets = []
-            tickets.open = []
-            tickets.inProgress = []
-            tickets.onHold = []
-            tickets.completed = []
-            var arrayLength = response.data.tickets.length
-            for (var i = 0; i < arrayLength; i++) {
-              var element = response.data.tickets[i]
-              if (element.completed) {
-                tickets.completed.push(element)
-              } else if (element.onHold) {
-                tickets.onHold.push(element)
-              } else if (element.inProgress) {
-                tickets.inProgress.push(element)
-              } else {
-                tickets.open.push(element)
-              }
-            }
-            commit('FETCH_PAGE_CONTENT', tickets)
-          }
-          commit('setDoneFetchingState')
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      commit('setDoneFetchingState')
     },
     fetchTicket ({commit}, {self}) {
       commit('setFetchingPageContentState')
-      self.$ALP_ITIL_API.getTicketData(this.state.currentTicketNumber)
-        .then((response) => {
-          if (response && response.data && response.data.ticket) {
-            if (response.data.ticket.attachments) {
-              response.data.ticket.attachments.forEach(function (element) {
-                element.downloading = false
-              })
-            }
-            commit('FETCH_PAGE_CONTENT', response.data.ticket)
-          }
-          commit('setDoneFetchingState')
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      commit('setDoneFetchingState')
     },
     fetchComments ({commit}, {self}) {
       commit('setFetchingPageContentState')
-      self.$ALP_ITIL_API.getTicketComments(this.state.currentTicketNumber)
-        .then((response) => {
-          if (response && response.data && response.data.comments) {
-            commit('FETCH_PAGE_CONTENT', response.data.comments)
-          }
-          commit('setDoneFetchingState')
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      commit('setDoneFetchingState')
     }
   }
 })
