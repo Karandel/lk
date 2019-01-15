@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-navigation-drawer
-      clipped
       width='250'
       v-model="drawer"
       enable-resize-watcher
@@ -11,18 +10,35 @@
       <v-list>
         <v-list-tile>
           <v-list-tile-action>
-            <v-icon>account_balance</v-icon>
+            <v-icon>assignment</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>Первый 1</v-list-tile-title>
+            <v-list-tile-title>Обращения</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
         <v-list-tile>
           <v-list-tile-action>
-            <v-icon>account_balance</v-icon>
+            <v-icon>book</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>Первый 2</v-list-tile-title>
+            <v-list-tile-title>Инструкции</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile>
+          <v-list-tile-action>
+            <v-icon>developer_board</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Отчеты</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-divider></v-divider>
+        <v-list-tile>
+          <v-list-tile-action>
+            <v-icon>help</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Справка</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
