@@ -4,6 +4,9 @@ import Login from '@/components/Login'
 import TicketList from '@/components/TicketList'
 import TicketView from '@/components/TicketView'
 import TicketAddComment from '@/components/TicketAddComment'
+import ManualList from '@/components/ManualList'
+import ReportList from '@/components/ReportList'
+import HelpList from '@/components/HelpList'
 
 Vue.use(Router)
 
@@ -18,43 +21,34 @@ let router = new Router({
     {
       path: '/',
       name: 'TicketList',
-      component: TicketList,
-      meta: {
-        requiresAuth: true
-      }
+      component: TicketList
     },
     {
       path: '/tickets/:ticketNumber',
       name: 'TicketView',
-      component: TicketView,
-      meta: {
-        requiresAuth: true
-      }
+      component: TicketView
     },
     {
       path: '/tickets/:ticketNumber/comments/add',
       name: 'TicketAddComment',
-      component: TicketAddComment,
-      meta: {
-        requiresAuth: true
-      }
+      component: TicketAddComment
+    },
+    {
+      path: '/manuals',
+      name: 'ManualList',
+      component: ManualList
+    },
+    {
+      path: '/reports',
+      name: 'ReportList',
+      component: ReportList
+    },
+    {
+      path: '/help',
+      name: 'HelpList',
+      component: HelpList
     }
   ]
-})
-
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (localStorage.getItem('ALP_ITIL_API_SessionID') == null) {
-      next({
-        path: '/login',
-        params: { nextUrl: to.fullPath }
-      })
-    } else {
-      next()
-    }
-  } else {
-    next()
-  }
 })
 
 export default router

@@ -17,7 +17,7 @@ import TicketShortInfo from '@/components/parts/TicketShortInfo'
 export default {
   components: {TicketListSelectionBar, TicketShortInfo},
   created () {
-    this.$store.commit('setMainNavbarState', {title: 'Мои заявки', returnButton: false})
+    this.$store.commit('setMainNavbarState', {title: 'Мои заявки'})
     this.$store.dispatch('fetchTickets', {self: this})
   },
   computed: {

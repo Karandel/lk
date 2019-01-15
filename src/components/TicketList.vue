@@ -99,7 +99,7 @@ import TicketShortInfoForBoard from '@/components/parts/TicketShortInfoForBoard'
 export default {
   components: {TicketListSelectionBar, TicketShortInfoForBoard},
   created () {
-    this.$store.commit('setMainNavbarState', {title: 'Мои заявки', returnButton: false})
+    this.$store.commit('setMainNavbarState', {title: 'Мои заявки'})
     this.$store.dispatch('fetchTickets', {self: this})
   },
   computed: {
